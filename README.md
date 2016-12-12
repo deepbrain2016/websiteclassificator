@@ -1,2 +1,2 @@
 # websiteclassificator
-Classificator of WebSites by means of Deep Learning
+Classificator of WebSites by means of Deep Learning or another classificator
