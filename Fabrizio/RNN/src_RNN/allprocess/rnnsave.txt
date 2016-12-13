@@ -1,0 +1,20 @@
+fabrizio@fabrizio:~/ECLIPSE_PYTHON/RNN/src_RNN/allprocess$ fg
+python MainProcess.py
+5402/5402 [==============================] - 2058s - loss: 0.5024 - acc: 0.7997 - val_loss: 0.4970 - val_acc: 0.8020
+Epoch 2/3
+5402/5402 [==============================] - 6008s - loss: 0.4786 - acc: 0.8082 - val_loss: 0.4680 - val_acc: 0.8070
+Epoch 3/3
+5402/5402 [==============================] - 1612s - loss: 0.3307 - acc: 0.8643 - val_loss: 0.5008 - val_acc: 0.8120
+2573/2573 [==============================] - 143s     
+SCORE:  0.513373465261
+ACC:  0.81927710855
+TP 57
+TN 2051
+FP 38
+FN 427
+F1: 0.19689119171
+PREC: 0.6
+REC: 0.117768595041
+ACC: 0.819277108434
+fabrizio@fabrizio:~/ECLIPSE_PYTHON/RNN/src_RNN/allprocess$ 
+

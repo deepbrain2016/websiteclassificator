@@ -1,0 +1,22 @@
+2016-11-24 08:17:32,701 : INFO : PROGRESS: at 99.84% examples, 66198 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:33,829 : INFO : PROGRESS: at 99.86% examples, 66203 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:34,965 : INFO : PROGRESS: at 99.87% examples, 66208 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:36,105 : INFO : PROGRESS: at 99.89% examples, 66213 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:37,226 : INFO : PROGRESS: at 99.91% examples, 66218 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:38,227 : INFO : PROGRESS: at 99.93% examples, 66224 words/s, in_qsize 5, out_qsize 0
+2016-11-24 08:17:39,265 : INFO : PROGRESS: at 99.94% examples, 66228 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:40,290 : INFO : PROGRESS: at 99.96% examples, 66232 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:41,361 : INFO : PROGRESS: at 99.97% examples, 66236 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:42,421 : INFO : PROGRESS: at 99.99% examples, 66239 words/s, in_qsize 6, out_qsize 0
+2016-11-24 08:17:43,335 : INFO : worker thread finished; awaiting finish of 2 more threads
+2016-11-24 08:17:43,523 : INFO : PROGRESS: at 100.00% examples, 66239 words/s, in_qsize 1, out_qsize 1
+2016-11-24 08:17:43,524 : INFO : worker thread finished; awaiting finish of 1 more threads
+2016-11-24 08:17:43,524 : INFO : worker thread finished; awaiting finish of 0 more threads
+2016-11-24 08:17:43,525 : INFO : training on 816863090 raw words (718926547 effective words) took 10853.5s, 66239 effective words/s
+2016-11-24 08:17:43,593 : INFO : storing 86173x100 projection weights into contenuti.model.bin
+fabrizio@fabrizio:~/ECLIPSE_PYTHON/RNN/word2vect_stuff$ python example.py load
+Number of arguments: 1 arguments.
+Argument List: ['load']
+Parole positive...:['amore']
+Parole negaitive...:[]
+
