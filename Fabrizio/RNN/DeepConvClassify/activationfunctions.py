@@ -1,5 +1,5 @@
 import theano
-import theano.tensor as T
+import theano.tensor as     T
 
 # Define all types of activation functions 
 class ActivationFunctions(object):
