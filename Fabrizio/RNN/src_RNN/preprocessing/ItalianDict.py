@@ -4,7 +4,7 @@ Created on 20/ott/2016
 @author: fabrizio
 '''
 import unicodedata
-
+from Config import Config 
 
 class ItalianDict(object):
 
@@ -19,7 +19,7 @@ class ItalianDict(object):
 
     def CaricaDict(self):
         #NomeFileItaliano="/home/fabrizio/DeepLearning/RNN/ContenutiDATA/dizionario_italiano.csv"
-        NomeFileItaliano="/home/fabrizio/ECLIPSE_PYTHON/RNN/ContenutiDATA/dizionarioItaEng.txt"
+        NomeFileItaliano=self.Configuration.Datapath+os.sep+self.Configuration.Dictonary
         FileItaliano=open(NomeFileItaliano,'r')
         print "\tCarica Dizionario ...",NomeFileItaliano
         for parola in FileItaliano:
@@ -63,6 +63,7 @@ class ItalianDict(object):
         self.dizionario=set()
         self.CaricaDict()
         self.nowordFileName="./nowordFile.txt"
+        self.Configuration=Config()
         
 # print "Start"
 # ID=ItalianDict()

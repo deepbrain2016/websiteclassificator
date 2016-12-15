@@ -9,7 +9,7 @@ Created on 03/ott/2016
 
 @author: fabrizio
 '''
-
+from Config import  Config 
 import sys   
 from PreprocessaContenuti import PreprocessaContenuti 
 #from PreprocParameters  import PreprocParameters
@@ -53,8 +53,4 @@ def process():
 print"Start Main"
 process()
 print"End Main"
-
-    
-    
-    
 
