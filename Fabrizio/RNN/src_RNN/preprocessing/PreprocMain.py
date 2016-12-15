@@ -15,9 +15,10 @@ from PreprocessaContenuti import PreprocessaContenuti
 #from PreprocParameters  import PreprocParameters
 
 def process():
-    
+    C=Config()
+    Corpus= C.Corpus
     #Corpus="Contenuti.txt"
-    Corpus=config.CorpusFile
+
     PPC=PreprocessaContenuti(Corpus)
     print "last output file: ",PPC.last_outputfile
     #PPC=PreprocessaContenuti("logcont.txt")

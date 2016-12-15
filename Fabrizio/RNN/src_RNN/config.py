@@ -1,15 +1,29 @@
 import ConfigParser
 
-config = ConfigParser.RawConfigParser()
-config.read('../globalPar.cfg')
 
-# getfloat() raises an exception if the value is not a float
-# getint() and getboolean() also do this for their respective types
-a_float = config.getfloat('Section1', 'a_float')
-an_int = config.getint('Section1', 'an_int')
-print a_float + an_int
+class Config(object):
+    
+    
+    def __init__(self):
 
-# Notice that the next output does not interpolate '%(bar)s' or '%(baz)s'.
-# This is because we are using a RawConfigParser().
-if config.getboolean('Section1', 'a_bool'):
-    print config.get('Section1', 'foo')
+        
+        Config = ConfigParser.ConfigParser()
+#         cfgfile = open("../GlobalPar.cfg",'w')
+# 
+#         Config.add_section('Global')
+#         Config.set('Global','CorpusFilePath',' /home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/Contenuti.txt')
+#         Config.write(cfgfile)
+#         cfgfile.close()
+        
+        Config.read('../GlobalPar.cfg')
+    
+        
+    
+        #Config.add_section('Global')
+        #config.set('Global', 'CorpusFilePath', ' /home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/Contenuti.txt')
+    
+    
+    
+        self.Corpus = Config.get('Global', 'CorpusFilePath')
+
+
