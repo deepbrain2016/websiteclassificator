@@ -17,7 +17,7 @@ from PreprocessaContenuti import PreprocessaContenuti
 def process():
     
     #Corpus="Contenuti.txt"
-    Corpus="Contenuti100.txt"
+    Corpus=config.CorpusFile
     PPC=PreprocessaContenuti(Corpus)
     print "last output file: ",PPC.last_outputfile
     #PPC=PreprocessaContenuti("logcont.txt")
