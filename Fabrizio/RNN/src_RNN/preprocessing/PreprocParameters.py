@@ -19,7 +19,7 @@ class PreprocParameters(object):
         '''
         C=Config()
         self.WorkDir = C.Datapath
-        self.w2vEmbeddingFileName = "/home/fabrizio/ECLIPSE_PYTHON/RNN/word2vect_stuff/contenuti100.model.bin"
+        self.w2vEmbeddingFileName = C.w2vEmbedding
         self.force=False
         
         

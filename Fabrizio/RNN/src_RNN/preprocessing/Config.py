@@ -22,5 +22,6 @@ class Config(object):
         self.Datapath = Config.get('PreProcessing', 'Datapath')
         self.Corpus = Config.get('PreProcessing', 'corpusfile')
         self.Dictonary = Config.get('PreProcessing', 'Dictonary')
+        self.w2vEmbedding = Config.get('Embedding', 'W2VAbsFile')
 
 

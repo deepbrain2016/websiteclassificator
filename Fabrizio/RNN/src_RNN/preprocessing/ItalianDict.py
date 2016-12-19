@@ -3,7 +3,7 @@ Created on 20/ott/2016
 
 @author: fabrizio
 '''
-import unicodedata
+import unicodedata,os
 from Config import Config 
 
 class ItalianDict(object):
@@ -60,10 +60,11 @@ class ItalianDict(object):
         '''
         Constructor
         '''
+        self.Configuration=Config()
         self.dizionario=set()
         self.CaricaDict()
         self.nowordFileName="./nowordFile.txt"
-        self.Configuration=Config()
+
         
 # print "Start"
 # ID=ItalianDict()
