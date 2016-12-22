@@ -19,7 +19,10 @@ class PreprocParameters(object):
         '''
         C=Config()
         self.WorkDir = C.Datapath
+        WorkDir+"/"+"DATI_ictgrezzi2015.csv"
+        self.mappingID_CLASS =C.Datapath+os.sep+C.FileClassMapping
         self.w2vEmbeddingFileName = C.w2vEmbedding
         self.force=False
+        
         
         
