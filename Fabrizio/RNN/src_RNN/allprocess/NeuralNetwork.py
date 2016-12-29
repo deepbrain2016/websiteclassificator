@@ -47,6 +47,7 @@ class NeuralNetwork(object):
         self.max_review_length=mydataset.max_site_length
         print ('load X,Y train test')
         (self.X_train, self.Y_train), (self.X_test, self.Y_test)=mydataset.dataSet
+        self.idTest=mydataset.get_idTest()
         print ("load model")
         self.model()
      
@@ -67,7 +68,9 @@ class NeuralNetwork(object):
         #              optimizer='adam',
         #              metrics=['accuracy'])
 
-        self.model.compile(loss='binary_crossentropy',
+        #self.model.compile(loss='binary_crossentropy',
+        self.model.compile(loss=f1,
+
                       optimizer='adam',
                       metrics=['accuracy'])
 
@@ -90,11 +93,12 @@ class NeuralNetwork(object):
         prediction= (self.model.predict_classes(self.X_test, verbose=2))
 
 
+        #print zip(prediction,self.idTest)
 
         
 #         print('Test score:', score)
 #         print('Test accuracy:', acc)  
-        P=Performance(score,acc,prediction,self.Y_test)
+        P=Performance(score,acc,prediction,self.Y_test,self.idTest)
         return P
        
     def model (self):
@@ -102,7 +106,7 @@ class NeuralNetwork(object):
         if (self.type=='LSTM'):
             self.model = Sequential()
             self.model.add(Embedding(self.top_words, self.embedding_vecor_length, input_length=self.max_review_length))
-            self.model.add(LSTM(self.N_LSTM)) # try using a GRU instead, for fun
+            self.model.add(LSTM(self.N_LSTM,dropout_W=0.7,dropout_U=0.7)) # try using a GRU instead, for fun
             self.model.add(Dense(1,activation='sigmoid'))
 
         # try using different optimizers and different optimizer configs

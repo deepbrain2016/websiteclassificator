@@ -26,9 +26,10 @@ def process():
     print "last output file: ",PPC.last_outputfile
     #sys.exit(0)
     
-    PPC.seleziona_righe_pochi_caratteri(100001) #circa 80%
+    PPC.seleziona_righe_pochi_caratteri(10000) #circa 80%
     print "last output file: ",PPC.last_outputfile
-    #PPC.conta_righe_lastFile()
+    PPC.conta_righe_lastFile()
+    
     #sys.exit(0)
     ##PreprocessaContenuti.estraiContex(listaParole,4)
     
@@ -36,7 +37,7 @@ def process():
     print "last output file: ",PPC.last_outputfile
     #PPC.conta_righe_lastFile()
     
-    encodincW2C=True
+    encodincW2C=False
     if (encodincW2C==True):
         PPC.w2v()
         

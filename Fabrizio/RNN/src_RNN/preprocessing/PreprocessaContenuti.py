@@ -46,7 +46,7 @@ class PreprocessaContenuti(object):
         
         def Ecommerce_dict():
             P=PreprocParameters()
-            nomeFileTargetEcommerce=P.WorkDir+"/"+"DATI_ictgrezzi2015.csv"
+            nomeFileTargetEcommerce=P.mappingID_CLASS
             DictEC={}
     
             fileTargetEcommerce=open(nomeFileTargetEcommerce,'r')
@@ -444,7 +444,12 @@ class PreprocessaContenuti(object):
                 row=row.replace("\r","")
                 filefiltered.write(row+"\n")
                  
+        filetofilter.close()    
             
+        
+        
+        self.last_outputfile=nome_output_file
+        print "filtraDizionario end"
                 
         
         

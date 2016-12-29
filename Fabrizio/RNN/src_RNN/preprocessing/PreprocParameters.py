@@ -5,6 +5,7 @@ Created on 03/ott/2016
 @author: fabrizio
 '''
 from Config import  Config 
+import os
 class PreprocParameters(object):
     '''
     classdocs
@@ -19,7 +20,6 @@ class PreprocParameters(object):
         '''
         C=Config()
         self.WorkDir = C.Datapath
-        WorkDir+"/"+"DATI_ictgrezzi2015.csv"
         self.mappingID_CLASS =C.Datapath+os.sep+C.FileClassMapping
         self.w2vEmbeddingFileName = C.w2vEmbedding
         self.force=False

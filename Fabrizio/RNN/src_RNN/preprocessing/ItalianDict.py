@@ -12,7 +12,13 @@ class ItalianDict(object):
     
     
     def strip_accents(self,s):
-        return unicodedata.normalize('NFD', s.decode('utf-8')).encode('ascii','ignore')
+        try:
+            w=unicodedata.normalize('NFD', s.decode('utf-8')).encode('ascii','ignore')
+        except:
+            
+            print "accent except", s
+            w=s
+        return w
         #return  ''.join(c for c in unicodedata.normalize('NFD', s.decode('utf-8'))
         #      if unicodedata.category(c) != 'Mn')
 
