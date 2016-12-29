@@ -1,6 +1,6 @@
 import theano
-import theano.tensor as T
-#prova
+import theano.tensor as     T
+
 
 # Define all types of activation functions 
 class ActivationFunctions(object):

@@ -26,7 +26,7 @@ class PreprocessaContenuti(object):
 
     def EcommerceDict(self):
         P=PreprocParameters()
-        nomeFileTargetEcommerce=P.WorkDir+"/"+"DATI_ictgrezzi2015.csv"
+        nomeFileTargetEcommerce=P.mappingID_CLASS
         DictEC={}
 
         fileTargetEcommerce=open(nomeFileTargetEcommerce,'r')
