@@ -26,9 +26,9 @@ class Parameters(object):
         self.contexW2Vnamefile="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/W2VContex5PochiCaratteri100001FilterItaEngNewContenuti100.txt.pkl"
         
         #self.contex3namefile="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/encoding_Contex5PochiCaratteri1000001FilterItaEngNewContenuti.txt.pkl"
-        self.contex3namefile="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/encoding_PochiCaratteri10000FilterItaEngNewDataSetPoeFrostCODUPPER.csv.pkl"
-        self.contex3namefile="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/encoding_PochiCaratteri10000FilterItaEngNewContenutiCut1000Char.txt.pkl"
-        self.contex3namefile="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/encoding_Contex5PochiCaratteri10000FilterItaEngNewContenutiCut1000Char.txt.pkl"
+        #self.contex3namefile="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/encoding_PochiCaratteri10000FilterItaEngNewDataSetPoeFrostCODUPPER.csv.pkl"
+        #self.contex3namefile="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/encoding_PochiCaratteri10000FilterItaEngNewContenutiCut1000Char.txt.pkl"
+        self.contex3namefile="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/encoding_Contex5PochiCaratteri10000FilterItaEngNewContenutiCut10000Char.txt.pkl"
         
         
         self.preproc=""
@@ -41,14 +41,15 @@ class Parameters(object):
         
         #self.max_features=1100 #poe frost dataset
         self.max_features=36534
+        self.PaddingFlag=True
         self.max_site_length=100
 
-        self.batch_size = 10
+        self.batch_size = 30
         self.epoch = 2
         
 
         
-        self.ValidationSplit=0.01
+        self.ValidationSplit=0.1
         self.test_split=0.2
         
         

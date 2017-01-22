@@ -110,9 +110,9 @@ class RicostruzioneContenuti(object):
         
         
 
-RicostruzioneContenuti('/home/fabrizio/ECLIPSE_PYTHON/RNN/ContenutiDATA',
-                       'mapping_Contex5PochiCaratteri1000000FilterItaEngNewContenuti.txt',
-                       'encoding_Contex5PochiCaratteri1000000FilterItaEngNewContenuti.txt.pkl.txt')
+RicostruzioneContenuti('/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA',
+                       'mapping_Contex5PochiCaratteri10000FilterItaEngNewContenutiCut1000Char.txt',
+                       'encoding_Contex5PochiCaratteri10000FilterItaEngNewContenutiCut1000Char.txt.pkl.txt')
 
         
         

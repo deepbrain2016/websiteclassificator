@@ -118,23 +118,23 @@ class DataSet(object):
         
 
         (X_train, y_train), (X_test, y_test) =self.load_data(tipoDataSet)      
-        print X_train
+        #print X_train
         
-        print('Pad sequences (samples x time   maxlen:)',self.max_site_length)
-        #print len(X_train[0][0])
-        #print (X_train[0][0])
-        X_train = sequence.pad_sequences(X_train, maxlen=self.max_site_length,dtype="float32")
-        #print len(X_train[0][0])
-        #print (X_train[0][998])
         
-        #print len(X_test[0][0])
-        #print (X_test[0][0])
-        X_test = sequence.pad_sequences(X_test, maxlen=self.max_site_length,dtype="float32")
-        #print len(X_test[0][0])
-        #print (X_test[0][998])
+        if P.PaddingFlag==True:
+            print('Pad sequences (samples x time   maxlen:)',self.max_site_length)
+ 
+            X_train = sequence.pad_sequences(X_train, maxlen=self.max_site_length,dtype="float32")
+
+            X_test = sequence.pad_sequences(X_test, maxlen=self.max_site_length,dtype="float32")
+
+        else:
+            print('NO PADDING !!!')
+
+            
         
-        print('X_train shape:', X_train.shape)
-        print('X_test shape:', X_test.shape)
+        #print('X_train shape:', X_train.shape)
+        #print('X_test shape:', X_test.shape)
         
         self.dataSet= (X_train, y_train), (X_test, y_test)  
         

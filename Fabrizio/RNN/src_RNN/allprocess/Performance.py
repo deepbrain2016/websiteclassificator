@@ -123,7 +123,7 @@ class Performance(object):
         print "self.elencoTP"
         
 #        filedata=open ("/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/DataSetPoeFrostCODUPPER.csv",'r')
-        filedata=open ("/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/ContenutiCut1000Char.txt",'r')
+        filedata=open ("/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/ContenutiCut10000Char.txt",'r')
 
         dictDatafile={}
         for line in filedata:
@@ -133,7 +133,7 @@ class Performance(object):
             dictDatafile[k]=v
             
 #        filedataw=open ("/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/DataSetPoeFrostCODout.csv",'w')
-        filedataw=open ("/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/ContenutiCut1000Charout.txt",'w')
+        filedataw=open ("/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/ContenutiCut10000Charout.txt",'w')
             
         for k in self.elencoFN:
             w= "FN;"+k+";"+dictDatafile[k]

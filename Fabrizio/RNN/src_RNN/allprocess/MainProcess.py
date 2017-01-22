@@ -23,7 +23,7 @@ DS=DataSet()
 
 
 NN=NeuralNetwork(DS)
-
+NN.printNN()
 
 NN.learning()
 

@@ -19,7 +19,7 @@ from keras.callbacks import ModelCheckpoint
 from keras.layers.convolutional import Convolution1D
 from keras.layers.convolutional import MaxPooling1D
 from Parameters import *
-
+from keras.utils.visualize_util import plot
 
 class NeuralNetwork(object):
     '''
@@ -74,12 +74,14 @@ class NeuralNetwork(object):
                       optimizer='adam',
                       metrics=['accuracy'])
 
-        
+        self.model.summary()
         print('Train...')
         checkPoint=ModelCheckpoint(FormatModelSaved, monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto')
 
         self.model.fit(self.X_train, self.Y_train, batch_size=self.batch_size, nb_epoch=self.nb_epoch,
-                validation_split=self.ValidationSplit, callbacks=[checkPoint])
+                #validation_split=self.ValidationSplit,
+                validation_data=(self.X_test, self.Y_test),
+                callbacks=[checkPoint],shuffle=True)
                 #  validation_data=(self.X_test, self.Y_test))
 
         
@@ -105,8 +107,8 @@ class NeuralNetwork(object):
 
         if (self.type=='LSTM'):
             self.model = Sequential()
-            self.model.add(Embedding(self.top_words, self.embedding_vecor_length, input_length=self.max_review_length))
-            self.model.add(LSTM(self.N_LSTM,dropout_W=0.7,dropout_U=0.7)) # try using a GRU instead, for fun
+            self.model.add(Embedding(self.top_words, self.embedding_vecor_length))
+            self.model.add(LSTM(self.N_LSTM,dropout_W=0.1,dropout_U=0.1)) # try using a GRU instead, for fun
             self.model.add(Dense(1,activation='sigmoid'))
 
         # try using different optimizers and different optimizer configs
@@ -128,5 +130,8 @@ class NeuralNetwork(object):
             self.model.add(Dense(1, activation='sigmoid'))
 
 
-
+    def printNN(self):
+        
+            plot (self.model,show_shapes=True,show_layer_names=True, to_file='./model.png')
+        
             

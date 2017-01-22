@@ -196,9 +196,23 @@ class PreprocessaContenuti(object):
             file_txt_encode.write(str(row)+'\n')
             
         file_encode.close()    
-        file_txt_encode.close()    
-            
+        file_txt_encode.close()   
         
+        FN0=0
+        TN0=0
+        for COD_UNITA in self.nocontexID:
+
+            try:
+                EC_CLASSE = classe[EC_Dict[COD_UNITA]]
+                if EC_CLASSE == 1 :
+                    FN0+=1
+                if EC_CLASSE == 0 :
+                    TN0+=1 
+            except:
+                pass
+             
+        print '#### FN0',FN0   
+        print '#### TN0',TN0        
         
         
 
@@ -236,6 +250,7 @@ class PreprocessaContenuti(object):
         for linea in Contenuti:
             try:
                 linea[CaratteriSitoMassimi]
+                print "riga non presa in considerazione poiche' troppo lunga: ",lineeTot
 
             except:
                 #print "Riga con meno di: "+str(CaratteriSitoMassimi)+"Caratteri"
@@ -425,7 +440,7 @@ class PreprocessaContenuti(object):
         filetofilter=open(nome_input_file,'r')
         filefiltered=open(nome_output_file,'w')
         Ontologia=OntologiaEC()
-        
+
         for row in filetofilter:
             [ID,string]=row.split("\t")
             if checkSplitID(ID)==True:
@@ -436,6 +451,9 @@ class PreprocessaContenuti(object):
                     outrow=outrow.replace("\r","")
                 else:
                     outrow="nocontexwords"
+                    if P.nocontexwordsFlag==False:
+                        self.nocontexID.append(ID)
+                        continue
                 stringOut= ID+"\t"+outrow
                 filefiltered.write(stringOut+"\n")   
             else:
@@ -448,7 +466,7 @@ class PreprocessaContenuti(object):
             
         
         
-        self.last_outputfile=nome_output_file
+        self.last_outputfile=suffix+self.last_outputfile
         print "filtraDizionario end"
                 
         
@@ -470,7 +488,7 @@ class PreprocessaContenuti(object):
         self.classe['1']=1
         self.classe['2']=0
     
-        
+        self.nocontexID=[]
         
         
         print "init PreprocessaContenuti .... end"

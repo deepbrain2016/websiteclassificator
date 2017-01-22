@@ -23,6 +23,7 @@ class PreprocParameters(object):
         self.mappingID_CLASS =C.Datapath+os.sep+C.FileClassMapping
         self.w2vEmbeddingFileName = C.w2vEmbedding
         self.force=False
+        self.nocontexwordsFlag=False
         
         
         

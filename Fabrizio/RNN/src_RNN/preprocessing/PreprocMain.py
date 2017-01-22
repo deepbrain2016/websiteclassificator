@@ -37,12 +37,15 @@ def process():
     print "last output file: ",PPC.last_outputfile
     #PPC.conta_righe_lastFile()
     
-    encodincW2C=False
-    if (encodincW2C==True):
-        PPC.w2v()
-        
-    else:
-        PPC.encoding()
+    
+    
+#     
+#     encodincW2C=False
+#     if (encodincW2C==True):
+#         PPC.w2v()
+#         
+#     else:
+#         PPC.encoding()
 
 
     
