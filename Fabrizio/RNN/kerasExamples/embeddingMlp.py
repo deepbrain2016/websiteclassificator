@@ -165,7 +165,7 @@ mode='l'
 mode='e'    
 mode='s'        
 
-BASE_DIR = './'
+BASE_DIR = '/home/fabrizio/SVILUPPO_SOFTWARE/DATI/ICT/EMBEDDING_DATA/'
 #GLOVE_DIR = BASE_DIR + '/glove.6B/'
 
 W2V_DIR = BASE_DIR + '/word2vecEC/'
