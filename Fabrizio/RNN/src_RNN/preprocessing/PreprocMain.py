@@ -39,7 +39,7 @@ def process():
     
     
     
-#     
+#
 #     encodincW2C=False
 #     if (encodincW2C==True):
 #         PPC.w2v()

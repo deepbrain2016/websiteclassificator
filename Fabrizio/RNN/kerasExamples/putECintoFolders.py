@@ -8,11 +8,13 @@ classe['1']=1
 classe['2']=0
 
 
-import random
+DATAHOME="/home/fabrizio/SVILUPPO_SOFTWARE/DATI/ICT/DATA/"
+OUTHOME="/home/fabrizio/SVILUPPO_SOFTWARE/DATI/ICT/EMBEDDING_DATA/"
+import random,os,re
 
 def Ecommerce_dict():
 
-    nomeFileTargetEcommerce="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/DATI_ictgrezzi2015.csv"
+    nomeFileTargetEcommerce=DATAHOME+os.sep+"DATI_ictgrezzi2015.csv"
     DictEC={}
 
     fileTargetEcommerce=open(nomeFileTargetEcommerce,'r')
@@ -40,10 +42,20 @@ def checkSplitID(ID):
             return False
     return True     
 
+
+def resizeContex(string):
+    mylist=[]
+    for sentence in string.split(" stop "):
+        sentSplit=sentence.split(" ")
+        sentence=" ".join(sentSplit[1:len(sentSplit)-1])
+        mylist.append(sentence)
+    return " stop ".join(mylist)
+        
+    
 if __name__ == '__main__':
     
-        nome_input_file="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/FilterItaEngNewContenutiCut10000Char.txt"
-        nome_input_file="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/Contex5PochiCaratteri10000FilterItaEngNewContenutiCut10000Char.txt"
+        #nome_input_file="/home/fabrizio/DEVPYTHON/RNN/ContenutiDATA/FilterItaEngNewContenutiCut10000Char.txt"
+        nome_input_file=DATAHOME+os.sep+"Contex5PochiCaratteri10000FilterItaEngNewContenutiCut10000Char.txt"
         filetofilter=open(nome_input_file,'r')
         
         i=0
@@ -62,16 +74,16 @@ if __name__ == '__main__':
                 dir=None
                 
                 #if i<1000:
-                #if random.randint(1,10000)<1000:
-                if random.randint(1,10000)<-50:
+                if random.randint(1,10000)<1000:
+                #if random.randint(1,10000)<-50:
                     if EC_CLASSE==0:
-                        dir="EcommerceTestContex/EC0"
+                        dir=OUTHOME+os.sep+"ecContexBil_test/EC0"
                         NomeFile=dir+"/"+ID+".txt"
                         f=open (NomeFile,"w")
                         f.write(string)
                         f.close
                     if EC_CLASSE==1:
-                        dir="EcommerceTestContex/EC1"
+                        dir=OUTHOME+os.sep+"ecContexBil_test/EC1"
                         NomeFile=dir+"/"+ID+"00000.txt"
                         f=open (NomeFile,"w")
                         f.write(string)
@@ -79,28 +91,36 @@ if __name__ == '__main__':
                 else:
                 
                     if EC_CLASSE==0:
-                        dir="EcommerceContex/EC0"
+                        dir=OUTHOME+os.sep+"ecContexBil/EC0"
                         NomeFile=dir+"/"+ID+".txt"
                         f=open (NomeFile,"w")
                         f.write(string)
                         f.close
                     if EC_CLASSE==1:
-                        dir="EcommerceContex/EC1"
+                        dir=OUTHOME+os.sep+"ecContexBil/EC1"
                         NomeFile=dir+"/"+ID+"00000.txt"
                         f=open (NomeFile,"w")
                         f.write(string)
                         f.close
-                        #NomeFile=dir+"/"+ID+"00001.txt"
-                        #f=open (NomeFile,"w")
-                        #f.write(string)
-                        #f.close
-                        #NomeFile=dir+"/"+ID+"00002.txt"
-                        #f=open (NomeFile,"w")
-                        #f.write(string)
-                        #f.close
-                        #NomeFile=dir+"/"+ID+"00003.txt"
-                        #f=open (NomeFile,"w")
-                        #f.write(string)
-                        #f.close
+                        
+                        string=resizeContex(string)
+                        NomeFile=dir+"/"+ID+"00001.txt"
+                        f=open (NomeFile,"w")
+                        f.write(string)
+                        f.close
+ 
+                        string=resizeContex(string)
+                        NomeFile=dir+"/"+ID+"00002.txt"
+                        f=open (NomeFile,"w")
+                        f.write(string)
+                        f.close
+                         
+                        string=resizeContex(string)
+                        NomeFile=dir+"/"+ID+"00003.txt"
+                        f=open (NomeFile,"w")
+                        f.write(string)
+                        f.close
+                        
             i+=1
                 
+print "EndProgram..."

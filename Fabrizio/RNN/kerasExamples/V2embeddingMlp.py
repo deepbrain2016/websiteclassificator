@@ -39,6 +39,41 @@ from keras.callbacks import EarlyStopping,ModelCheckpoint
 import sys
 
 
+
+
+
+mode='e'    
+mode='l'
+mode='s'        
+
+
+NB_EPOCHS = 2
+BASE_DIR = '/home/fabrizio/SVILUPPO_SOFTWARE/DATI/ICT/EMBEDDING_DATA/'
+#GLOVE_DIR = BASE_DIR + '/glove.6B/'
+
+W2V_DIR = BASE_DIR + '/word2vecEC/'
+#TEXT_DATA_DIR = BASE_DIR + '/test/'
+
+#TEXT_DATA_DIR = BASE_DIR + '/Ecommerce/'
+#TEXT_DATA_DIR = BASE_DIR + '/EcommerceTest/'
+#TEXT_DATA_DIR = BASE_DIR + '/20_newsgroup/'
+
+#TEXT_DATA_DIR = BASE_DIR + '/EcommerceTestContex/'
+#TEXT_DATA_DIR = BASE_DIR + '/EcommerceContex/'
+#TEXT_DATA_DIR = BASE_DIR + '/2_newsgroupSbil/'
+
+TEXT_DATA_TEST_DIR = BASE_DIR + '/ecContexBil_test/'
+TEXT_DATA_DIR = BASE_DIR + '/ecContexBil/'
+
+MAX_SEQUENCE_LENGTH = 1000
+MAX_NB_WORDS = 20000
+EMBEDDING_DIM = 100
+
+
+#VALIDATION_SPLIT = 0.1
+
+
+
 def f2(y_true, y_pred):
     a1=np.asarray([1,0])
     a2=np.asarray([0,1])
@@ -164,92 +199,97 @@ def confusion_matrix(TestID_Prediction,Y_test):
         return TP,TN,FP,FN,F1,PREC,REC,ACC
     
 
-mode='e'    
-mode='l'
-mode='s'        
-
-
-NB_EPOCHS = 6
-BASE_DIR = './'
-#GLOVE_DIR = BASE_DIR + '/glove.6B/'
-
-W2V_DIR = BASE_DIR + '/word2vecEC/'
-TEXT_DATA_DIR = BASE_DIR + '/test/'
-
-TEXT_DATA_DIR = BASE_DIR + '/Ecommerce/'
-TEXT_DATA_DIR = BASE_DIR + '/EcommerceTest/'
-TEXT_DATA_DIR = BASE_DIR + '/20_newsgroup/'
-
-TEXT_DATA_DIR = BASE_DIR + '/EcommerceTestContex/'
-TEXT_DATA_DIR = BASE_DIR + '/EcommerceContex/'
-TEXT_DATA_DIR = BASE_DIR + '/2_newsgroupSbil/'
-
-MAX_SEQUENCE_LENGTH = 1000
-MAX_NB_WORDS = 20000
-EMBEDDING_DIM = 100
-
-
-VALIDATION_SPLIT = 0.10
-
-if mode =='e':
-	VALIDATION_SPLIT=0.10
+#if mode =='e':
+#	VALIDATION_SPLIT=0.10
 
 # first, build index mapping words in the embeddings set
 # to their embedding vector
 
-print('Indexing word vectors.')
-print ('Carica il file Word2Vec     -----------    word  :   vextctor')
-embeddings_index = {}
-f = open(os.path.join(W2V_DIR, 'word2vecDict1.txt'))
-for line in f:
-    values = line.split()
-    word = values[0]
-    coefs = np.asarray(values[1:], dtype='float32')
-    embeddings_index[word] = coefs
-f.close()
 
 
+def load_EmbeddingModel():
+    print('Indexing word vectors.')
+    print ('Carica il file Word2Vec     -----------    word  :   vextctor')
+    embeddings_index = {}
+    f = open(os.path.join(W2V_DIR, 'word2vecDict1.txt'))
+    for line in f:
+        values = line.split()
+        word = values[0]
+        coefs = np.asarray(values[1:], dtype='float32')
+        embeddings_index[word] = coefs
+    f.close()
+    return embeddings_index
 
+
+embeddings_index=load_EmbeddingModel()
+print('Found %s word vectors.' % len(embeddings_index))
+
+
+#sys.exit(0)
 #############################################################  embeddings_index MATRICE word --> vector  #####################
 
-print('Found %s word vectors.' % len(embeddings_index))
 
 # second, prepare text samples and their labels
 print('Processing text dataset')
 
 
 
-texts = []  # list of text samples
-labels_index = {}  # dictionary mapping label name to numeric id
-labels = []  # list of label ids
 
 ########################################################### labels -----> classi  ##################################
 
-for name in sorted(os.listdir(TEXT_DATA_DIR)):
-    path = os.path.join(TEXT_DATA_DIR, name)
-    if os.path.isdir(path):
-        label_id = len(labels_index)   ############ classi 
 
-        labels_index[name] = label_id   ############ classi
-        #print "labels_index",labels_index
-        #print "name",name
-        #print "label_id: ",label_id
-        for fname in sorted(os.listdir(path)):
-            #print "fname: ",fname
-            fname_=fname.replace(".txt","")
-            if fname_.isdigit():
-                fpath = os.path.join(path, fname)
-                if sys.version_info < (3,):
-                    f = open(fpath)
-                else:
-                    f = open(fpath, encoding='utf8')
-                texts.append(f.read())
-                f.close()
-                #print "####### label_id: ",label_id 
-                labels.append(label_id)
+def load_text_labels_file(DATA_DIR):
+    texts = []  # list of text samples
+    labels_index = {}  # dictionary mapping label name to numeric id
+    labels = []  # list of label ids
+
+    for name in sorted(os.listdir(DATA_DIR)):
+        path = os.path.join(DATA_DIR, name)
+        if os.path.isdir(path):
+            label_id = len(labels_index)   ############ classi 
+    
+            labels_index[name] = label_id   ############ classi
+            #print "labels_index",labels_index
+            #print "name",name
+            #print "label_id: ",label_id
+            for fname in sorted(os.listdir(path)):
+                #print "fname: ",fname
+                fname_=fname.replace(".txt","")
+                if fname_.isdigit():
+                    fpath = os.path.join(path, fname)
+                    if sys.version_info < (3,):
+                        f = open(fpath)
+                    else:
+                        f = open(fpath, encoding='utf8')
+                    texts.append(f.read())
+                    f.close()
+                    #print "####### label_id: ",label_id 
+                    labels.append(label_id)
+    return texts,labels_index,labels
+                
+                
+texts,labels_index,labels=load_text_labels_file(TEXT_DATA_DIR)                
 print "Analizzo le cartelle di input per ricavere le classi"
 print "labels: ",labels
 print('Found %s texts.' % len(texts))
+
+
+textsTest,labels_indexTest,labelsTest=load_text_labels_file(TEXT_DATA_TEST_DIR)                
+print "Analizzo le cartelle di input TEST per ricavere le classi"
+print "labels TEST: ",labelsTest
+
+NB_TEST_FILE=len(textsTest)
+print('Found %s texts.' % NB_TEST_FILE )
+
+
+texts=texts+textsTest
+#labels_index=labels_index+labels_indexTest
+labels=labels+labelsTest
+print "Analizzo le cartelle di input TEST+TRAIN per ricavere le classi"
+print "labels: TEST+TRAIN",labels
+print('Found %s texts. TEST+TRAIN' % len(texts))
+
+print "labels_index",labels_index
 
 # finally, vectorize the text samples into a 2D integer tensor
 tokenizer = Tokenizer(nb_words=MAX_NB_WORDS)
@@ -277,19 +317,14 @@ print('Shape of data tensor:', data.shape)
 print('Shape of label tensor:', labels.shape)
 
 # split the data into a training set and a validation set
-def shuf(data,labels):
-	indices = np.arange(data.shape[0])
-	np.random.shuffle(indices)
-	data = data[indices]
-	labels = labels[indices]
-	return data,labels
 
-nb_validation_samples = int(VALIDATION_SPLIT * data.shape[0])
+#nb_validation_samples = int(VALIDATION_SPLIT * data.shape[0])
+
+nb_validation_samples=NB_TEST_FILE
 
 
-
-data,labels=shuf(data,labels)
-print "shuffle di tutto il dataset"
+#data,labels=shuf(data,labels)
+#print "shuffle di tutto il dataset"
 
 x_train = data[:-nb_validation_samples]
 y_train = labels[:-nb_validation_samples]
@@ -297,45 +332,53 @@ print "split train..."
 
 
 
-
 def bil(x,y):
-	return x,y
-	print type(x)
-	print type(y)
-	xout=[]
-	yout=[]
-	n0=0
-	n1=1
-	print "per tutti i label=1 faccio 3 copie..."
-	for label,data in zip(y,x):
-		#print label
-		if label[1]==1:
-			n1=n1+4
-			xout.append(data)		
-			xout.append(data)		
-			xout.append(data)		
-			xout.append(data)		
-			yout.append(label)		
-			yout.append(label)		
-			yout.append(label)		
-			yout.append(label)		
-		else:
-		
-			n0=n0+1
-			xout.append(data)		
-			yout.append(label)		
-	print "n0",n0
-	print "n1",n1
-	return np.array(xout,dtype=theano.config.floatX),np.array(yout)
+    BilanciamentoFlag=True
+    if (BilanciamentoFlag):
+        print "Bilanciamento di Keras non effettuato"
+        return x,y
+    else:
+        print "Bilanciamento di Keras ..."
+        
+    	print type(x)
+    	print type(y)
+    	xout=[]
+    	yout=[]
+    	n0=0
+    	n1=1
+    	print "per tutti i label=1 faccio 3 copie..."
+        for label,data in zip(y,x):
+    		#print label
+            if label[1]==1:
+                n1=n1+4
+                data2=(data)
+                data3=(data2)
+                data4=(data3)
+                xout.append(data)		
+                xout.append(data2)		
+                xout.append(data3)		
+                xout.append(data4)		
+                yout.append(label)		
+                yout.append(label)		
+                yout.append(label)		
+                yout.append(label)		
+            else:
+    		
+    			n0=n0+1
+    			xout.append(data)		
+    			yout.append(label)		
+    	print "n0",n0
+    	print "n1",n1
+    	return np.array(xout,dtype=theano.config.floatX),np.array(yout)
 
 
 
 
 
 print "len train:",len(x_train)
-x_train,y_train = bil(x_train,y_train) 
 
-print "bilancio il train..."
+print "call bilanciamento train..."
+x_train,y_train = bil(x_train,y_train) 
 print "len train dapo bilanciaomento:",len(x_train)
 #x_train = data
 #y_train = labels
@@ -348,8 +391,16 @@ y_val = labels[-nb_validation_samples:]
 print "split....  validation lenght:",nb_validation_samples
 
 
-#x_train,y_train=shuf(x_train,y_train)
-#x_val,y_val=shuf(x_val,y_val)
+def shuf(data,labels):
+    indices = np.arange(data.shape[0])
+    np.random.shuffle(indices)
+    data = data[indices]
+    labels = labels[indices]
+    return data,labels
+
+
+x_train,y_train=shuf(x_train,y_train)
+x_val,y_val=shuf(x_val,y_val)
 
 
 dict2={}    
@@ -414,7 +465,7 @@ if mode=='s' :
     
     
     
-    model.compile(loss='categorical_crossentropy',
+    model.compile(loss=f2,#Ycategorical_crossentropy',
                   optimizer='rmsprop',
                   metrics=['acc'])
 
@@ -435,19 +486,19 @@ checkPoint=ModelCheckpoint("model"+str(time.time())+".h5", monitor='val_loss', v
 
 if mode=='l':
     print "LOAD MODEL..."
-    model=load_model('')
+    model=load_model('./modelsave_last.h5')
     model.summary()
     model.compile(loss='categorical_crossentropy',
               optimizer='rmsprop',
               metrics=['acc'])
     model.fit(x_train, y_train, validation_data=(x_val,y_val),
                nb_epoch=NB_EPOCHS, batch_size=300, callbacks=[checkPoint])
-    model.save("")
+    model.save("./modelsave_last2.h5")
 
 
 if mode=='e':
     print "EVALMODEL"
-    model=load_model('')
+    model=load_model('modelsave_last.h5')
     model.summary()
     
     #index_val=0
