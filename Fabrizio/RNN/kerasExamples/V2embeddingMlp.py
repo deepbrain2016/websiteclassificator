@@ -47,7 +47,7 @@ mode='l'
 mode='s'        
 
 
-NB_EPOCHS = 2
+NB_EPOCHS = 1
 BASE_DIR = '/home/fabrizio/SVILUPPO_SOFTWARE/DATI/ICT/EMBEDDING_DATA/'
 #GLOVE_DIR = BASE_DIR + '/glove.6B/'
 
@@ -71,6 +71,32 @@ EMBEDDING_DIM = 100
 
 
 #VALIDATION_SPLIT = 0.1
+
+
+
+def myf1(y_true, y_pred):
+    """Computes the f-measure, the harmonic mean of precision and recall.
+
+    Here it is only computed as a batch-wise average, not globally.
+    """
+    
+    
+    y_pred_=T.round(T.clip(y_pred,0,1))
+     
+    
+    y_trueT=T.transpose(y_true)
+
+    out=T.dot(y_trueT,y_pred_)
+    
+    TP=out[1][1]
+    TN=out[0][0]
+    FP=out[0][1]
+    FN=out[1][0]
+    F1=2*TP/(2*TP+FN+FP)
+    ACC=(TP+TN)/(TP+TN+FN+FP)
+    
+    
+    return F1
 
 
 
@@ -467,7 +493,7 @@ if mode=='s' :
     
     model.compile(loss=f2,#Ycategorical_crossentropy',
                   optimizer='rmsprop',
-                  metrics=['acc'])
+                  metrics=[myf1])
 
 
 #     model.compile(loss='mse',
@@ -544,10 +570,10 @@ if  mode=='s':
     model.save("modelsave_last.h5")
 
 
-score, acc = model.evaluate(x_val, y_val,
+score, f1 = model.evaluate(x_val, y_val,
                             batch_size=128)
         
-print score,acc
+print score,f1
 prediction= (model.predict(x_val, verbose=2))
 
 #print prediction

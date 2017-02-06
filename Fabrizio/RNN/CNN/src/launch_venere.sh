@@ -1,0 +1,12 @@
+python MainProc.py run_0 binary 50 global 0.3 lenet500 mse RMSprop 30 3
+python MainProc.py run_1 binary 50 global 0.3 lenet500 mae RMSprop 30 3
+python MainProc.py run_2 binary 50 global 0.3 lenet500 mape RMSprop 30 3
+python MainProc.py run_3 binary 50 global 0.3 lenet500 msle RMSprop 30 3
+python MainProc.py run_4 binary 50 global 0.3 lenet500 squared_hinge RMSprop 30 3
+python MainProc.py run_5 binary 50 global 0.3 lenet500 hinge RMSprop 30 3
+python MainProc.py run_6 binary 50 global 0.3 lenet500 categorical_crossentropy RMSprop 30 3
+python MainProc.py run_7 binary 50 global 0.3 lenet500 sparse_categorical_crossentropy RMSprop 30 3
+python MainProc.py run_8 binary 50 global 0.3 lenet500 kullback_leibler_divergence RMSprop 30 3
+python MainProc.py run_9 binary 50 global 0.3 lenet500 poisson RMSprop 30 3
+python MainProc.py run_10 binary 50 global 0.3 lenet500 cosine_proximity RMSprop 30 3
+python MainProc.py run_11 binary 50 global 0.3 lenet500 f1 RMSprop 30 3

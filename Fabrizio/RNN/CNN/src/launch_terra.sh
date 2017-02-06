@@ -1,0 +1,14 @@
+python MainProc.py run_0 binary 50 global 0.3 lenet500_huge categorical_crossentropy SGD 30 3
+python MainProc.py run_1 binary 50 global 0.3 lenet500_huge categorical_crossentropy SGD 30 3
+python MainProc.py run_2 binary 50 global 0.3 lenet500_huge categorical_crossentropy RMSprop 30 3
+python MainProc.py run_3 binary 50 global 0.3 lenet500_huge categorical_crossentropy RMSprop 30 3
+python MainProc.py run_4 binary 50 global 0.3 lenet500_huge categorical_crossentropy Adagrad 30 3
+python MainProc.py run_5 binary 50 global 0.3 lenet500_huge categorical_crossentropy Adagrad 30 3
+python MainProc.py run_6 binary 50 global 0.3 lenet500_huge categorical_crossentropy Adadelta 30 3
+python MainProc.py run_7 binary 50 global 0.3 lenet500_huge categorical_crossentropy Adadelta 30 3
+python MainProc.py run_8 binary 50 global 0.3 lenet500_huge categorical_crossentropy Adam 30 3
+python MainProc.py run_9 binary 50 global 0.3 lenet500_huge categorical_crossentropy Adam 30 3
+python MainProc.py run_10 binary 50 global 0.3 lenet500_huge categorical_crossentropy Adamax 30 3
+python MainProc.py run_11 binary 50 global 0.3 lenet500_huge categorical_crossentropy Adamax 30 3
+python MainProc.py run_12 binary 50 global 0.3 lenet500_huge categorical_crossentropy Nadam 30 3
+python MainProc.py run_13 binary 50 global 0.3 lenet500_huge categorical_crossentropy Nadam 30 3

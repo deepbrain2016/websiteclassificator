@@ -22,7 +22,6 @@ top_words = 5000
 (X_train, y_train), (X_test, y_test) = imdb.load_data(nb_words=top_words)
 
 
- 
 
 outfile=open("./outfile",'w')
 outfile.write(str(X_train[10])+"len"+str(len(X_train[10]))+'\n')
